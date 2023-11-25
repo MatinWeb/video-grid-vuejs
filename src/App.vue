@@ -20,7 +20,6 @@ export default {
     appHeader: Header,
   },
   async created() {
-    debugger;
     this.isBusy = true;
     try {
       await this.$store.dispatch("accessData");

@@ -48,7 +48,6 @@ export default {
   },
   computed: {
     baseInfos() {
-      debugger;
       return this.$store.getters.baseInfos;
     },
   },
@@ -60,7 +59,6 @@ export default {
       });
       // Simulated ajax query
       setTimeout(() => {
-        debugger;
         this.items = this.dataSearch.filter((e) => {
           return (e || "").toLowerCase().indexOf((v || "").toLowerCase()) > -1;
         });
@@ -69,9 +67,7 @@ export default {
     },
 
     searching() {
-      debugger;
       if (this.search != null) {
-        debugger;
         this.$router.push({ name: 'Grid', query: { search_result: 1 } }).catch(()=>{})
         this.$store.dispatch("searching", this.search);
         eventBus.$emit("passSearch", this.search);

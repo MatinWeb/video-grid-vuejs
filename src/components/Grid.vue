@@ -51,7 +51,6 @@ export default {
   },
   watch: {
     $route(to, from) {
-      debugger;
       if (this.queryKey != undefined && this.queryKey == to.query.page ) {
         this.$store.dispatch("accessData");
       }
@@ -84,7 +83,6 @@ export default {
     eventBus.$on("passSearch", (search) => {
       this.search = search;
     });
-    debugger;
     if (this.search == null) {
       this.$store.dispatch("accessData");
     }

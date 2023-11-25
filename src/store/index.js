@@ -20,13 +20,11 @@ export default new Vuex.Store({
     mutations: {
 
         accessData(state, { result }) {
-            debugger;
             state.baseInfos = result.data;
             state.infos = state.baseInfos;
             state.infoLength = state.infos.length;
             state.infoPaging = Math.ceil(state.infoLength / 9);
             let firstLoad = root.$route.query.page;
-            console.log(firstLoad);
             if (root.$route.name === 'Grid') {
                 if (firstLoad) {
                     state.max = 9 * firstLoad;
@@ -39,19 +37,14 @@ export default new Vuex.Store({
 
                 state.pagingInfo = state.infos.slice(state.min, state.max);
 
-                console.log(state.pagingInfo);
-
                 state.informations = [];
                 for (let key in state.pagingInfo) {
                     state.info = state.pagingInfo[key];
-
                     state.informations.push(state.info);
                 }
-                // alert(state.informations);
             }
         },
         routeWithBtn(state, index) {
-            debugger;
             state.max = 9 * (index + 1);
             state.min = 9 * index;
             state.pagingInfo = state.infos.slice(state.min, state.max);
@@ -68,30 +61,23 @@ export default new Vuex.Store({
             id,
             result
         }) {
-            debugger;
             state.baseInfos = result.data;
             state.infos = state.baseInfos;
             state.infos.map(item => {
-                console.log(item);
-
                 if (item.ID == id) {
-                    return (state.specialVideo = item, console.log(state.specialVideo))
-
+                    return (state.specialVideo = item)
                 }
-
             })
 
         },
 
         searching(state, search) {
             state.infos = []
-            debugger;
             state.infos = state.baseInfos.filter(element => element.Title.includes(search));
 
             state.infoLength = state.infos.length;
             state.infoPaging = Math.ceil(state.infoLength / 9);
             let firstLoad = root.$route.query.search_result;
-            console.log(firstLoad);
             if (root.$route.name === 'Grid') {
                 if (firstLoad) {
                     state.max = 9 * firstLoad;
@@ -103,8 +89,6 @@ export default new Vuex.Store({
                 }
 
                 state.pagingInfo = state.infos.slice(state.min, state.max);
-
-                console.log(state.pagingInfo);
 
                 state.informations = [];
                 for (let key in state.pagingInfo) {
@@ -119,10 +103,8 @@ export default new Vuex.Store({
     actions: {
 
         async accessData({ commit }) {
-            debugger;
             var result = await axios.get("/json/YoutubeData.json")
             commit('accessData', { result })
-
         },
         routeWithBtn({ commit }, index) {
             commit('routeWithBtn', index);

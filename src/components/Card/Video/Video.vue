@@ -21,11 +21,9 @@ export default {
   watch: {
     '$route'(to, from) {
       if(this.id == to.params.id){
-        debugger;
         alert('false')
         
       }else{
-        debugger;
         this.$store.dispatch('accessData')
       }
     }
@@ -34,9 +32,7 @@ export default {
     ...mapGetters(["specialVideo"]),
   },
   mounted() {
-    debugger;
     this.$store.dispatch("showingVideo", this.id);
-    console.log(this.specialVideo);
   },
 };
 </script>
